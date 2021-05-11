@@ -29,8 +29,20 @@ func main() {
 
 	//initializing an embedded struct
 	jim := Person{firstName: "Jim", lastName: "Party", contact: contactInfo{email: "jim@gmail.com", zipcode: 94000}}
+	jimPointer := &jim //get the adress of jim
 	//fmt.Println(jim)
+	jimPointer.updateName("jimmy")
 	jim.print()
+}
+
+//this is PASS BY VALUE not PASS BY ADDRESS so nothing will be changed in the calling function
+/*func (p Person) updateName(newFirstName string) {
+	p.firstName = newFirstName
+}*/
+
+//this is PASS BY ADRESS
+func (p *Person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName //(*p gets the value at the adress)
 }
 
 //reciever function to print
